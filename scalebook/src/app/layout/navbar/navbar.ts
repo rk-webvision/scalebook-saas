@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +8,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './navbar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Navbar {}
+export class Navbar {
+  private authService = inject(AuthService);
+  user$ = this.authService.user$;
+}
