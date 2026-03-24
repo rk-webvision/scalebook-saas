@@ -1,4 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +9,18 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('scalebook');
+  isAuthPage = false;
+  isSidebarOpen = true;
+
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.isAuthPage = this.router.url.includes('/auth');
+      });
+  }
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
 }

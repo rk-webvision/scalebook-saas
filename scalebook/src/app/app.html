@@ -1,3 +1,27 @@
-<app-navbar></app-navbar>
-<app-sidebar></app-sidebar>
-<router-outlet></router-outlet>
+<!-- AUTH LAYOUT -->
+<ng-container *ngIf="isAuthPage; else mainLayout">
+    <app-navbar></app-navbar>
+
+    <div class="auth-container">
+        <router-outlet></router-outlet>
+    </div>
+</ng-container>
+
+<!-- MAIN APP LAYOUT -->
+<ng-template #mainLayout>
+    <mat-sidenav-container class="layout-container">
+
+        <mat-sidenav mode="side" [opened]="isSidebarOpen">
+            <app-sidebar></app-sidebar>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
+
+            <div class="content-wrapper">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+</ng-template>

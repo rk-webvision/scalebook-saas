@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { App } from './app';
 import { LayoutModule } from './layout/layout.module';
+import { MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,9 @@ import { LayoutModule } from './layout/layout.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LayoutModule
+    LayoutModule,
+    MatSidenavModule,
+    MatSidenavContent
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

@@ -1,7 +1,19 @@
-<div *ngIf="user$ | async as user; else loggedOut">
-  Welcome, {{ user.email }}
-</div>
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="toggleSidebar.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
 
-<ng-template #loggedOut>
-  <span>Not logged in</span>
-</ng-template>
+  <span>ScaleBook</span>
+
+  <span class="spacer"></span>
+
+    <ng-container *ngIf="user$ | async as user; else loggedOut">
+        <span>{{ user.email }}</span>
+    </ng-container>
+
+    <ng-template #loggedOut>
+        <button mat-button routerLink="/auth/login" *ngIf="!isAuthPage()">
+            Login
+        </button>
+    </ng-template>
+</mat-toolbar>
