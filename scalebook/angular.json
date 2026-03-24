@@ -17,9 +17,7 @@
         "@schematics/angular:service": {
           "skipTests": true
         },
-        "@schematics/angular:module": {
-          "skipTests": true
-        },
+        
         "@schematics/angular:directive": {
           "standalone": false
         },
